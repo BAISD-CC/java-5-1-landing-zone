@@ -17,6 +17,8 @@ public class LandingZone {
 
         // Display the landing zone's data using a method.
 
+        // Close the program using System.exit()
+
     }
 
     /**

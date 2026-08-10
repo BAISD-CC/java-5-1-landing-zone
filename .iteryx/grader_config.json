@@ -1,0 +1,187 @@
+{
+  "schema": "iteryx/java-grader/v1",
+
+  "assignmentName": "Ch. 5 Challenge 1",
+
+  "project": {
+    "workingDirectory": ".",
+    "mainFile": "src/LandingZone.java",
+    "mainClass": "LandingZone",
+    "outputDirectory": ".iteryx/out",
+    "compileCommand": [
+      "javac",
+      "-d",
+      ".iteryx/out",
+      "src/LandingZone.java"
+    ],
+    "runCommand": [
+      "java",
+      "-cp",
+      ".iteryx/out",
+      "LandingZone"
+    ]
+  },
+
+  "settings": {
+    "compileTimeoutSeconds": 30,
+    "runTimeoutSeconds": 10,
+    "defaultCaseSensitive": false,
+    "defaultNormalizeWhitespace": true
+  },
+
+  "helpTopics": {
+    "methods": {
+      "title": "Methods with Parameters and Return Values",
+      "whereToLook": [
+        "Check that getLength, getWidth, and getArea are each written as their own method with the return type and parameters described in the README.",
+        "Make sure each method uses a return statement to send the value back, instead of printing it directly inside the method.",
+        "Call each method from main() and store the value it returns in a variable."
+      ]
+    },
+    "scanner": {
+      "title": "Reading Input with Scanner",
+      "whereToLook": [
+        "Make sure you create a Scanner object using System.in before you try to read any input.",
+        "Check that your prompt text matches the wording in the README before you call nextDouble().",
+        "Pass the same Scanner object into getLength and getWidth instead of creating a new one inside each method."
+      ]
+    },
+    "output": {
+      "title": "Displaying the Results",
+      "whereToLook": [
+        "Make sure you are calling displayData with the length, width, and area variables rather than typing numbers into the message.",
+        "Check that getArea is being used to calculate the area instead of typing a calculated number directly."
+      ]
+    },
+    "closing": {
+      "title": "Closing the Program",
+      "whereToLook": [
+        "Check that System.exit(0) is called after the landing zone's data has been displayed."
+      ]
+    }
+  },
+
+  "sourceChecks": [
+    {
+      "name": "Uses Scanner",
+      "type": "regex",
+      "pattern": "\\bScanner\\b",
+      "points": 1,
+      "message": "This challenge requires you to use a Scanner to read the user's input.",
+      "helpTopic": "scanner"
+    },
+    {
+      "name": "Defines a getLength method",
+      "type": "regex",
+      "pattern": "\\bgetLength\\s*\\(",
+      "points": 1,
+      "message": "You need a method named getLength that asks the user for the length and returns it.",
+      "helpTopic": "methods"
+    },
+    {
+      "name": "Defines a getWidth method",
+      "type": "regex",
+      "pattern": "\\bgetWidth\\s*\\(",
+      "points": 1,
+      "message": "You need a method named getWidth that asks the user for the width and returns it.",
+      "helpTopic": "methods"
+    },
+    {
+      "name": "Defines a getArea method",
+      "type": "regex",
+      "pattern": "\\bgetArea\\s*\\(",
+      "points": 1,
+      "message": "You need a method named getArea that accepts length and width and returns the area.",
+      "helpTopic": "methods"
+    },
+    {
+      "name": "Defines a displayData method",
+      "type": "regex",
+      "pattern": "\\bdisplayData\\s*\\(",
+      "points": 1,
+      "message": "You need a method named displayData that displays the length, width, and area.",
+      "helpTopic": "methods"
+    },
+    {
+      "name": "Closes the program with System.exit",
+      "type": "contains",
+      "pattern": "System.exit(",
+      "points": 1,
+      "message": "Your program should close itself using System.exit() after displaying the results.",
+      "helpTopic": "closing"
+    }
+  ],
+
+  "tests": [
+    {
+      "name": "Displays both prompts",
+      "input": "5\n3\n",
+      "expectedOutput": "Enter the landing zone's length in feet: Enter the landing zone's width in feet:",
+      "comparison": "included",
+      "points": 3,
+      "message": "Your program should display the exact prompts from the README before reading the length and the width.",
+      "possibleErrors": [
+        {
+          "type": "no_output",
+          "message": "Your program produced no output. Make sure you print a prompt before reading input with the Scanner."
+        },
+        {
+          "type": "expected_missing",
+          "message": "Check that your length prompt reads exactly \"Enter the landing zone's length in feet:\" and your width prompt reads exactly \"Enter the landing zone's width in feet:\"."
+        }
+      ]
+    },
+    {
+      "name": "Calculates and displays area for length 5, width 3",
+      "input": "5\n3\n",
+      "expectedOutput": "Length = 5.0 Width = 3.0 Area = 15.0",
+      "comparison": "included",
+      "points": 5,
+      "message": "With a length of 5 and a width of 3, your program should display a length of 5.0, a width of 3.0, and an area of 15.0.",
+      "possibleErrors": [
+        {
+          "type": "expected_missing",
+          "message": "Check that getArea multiplies the length and width parameters, and that displayData is called with the length, width, and area variables."
+        }
+      ]
+    },
+    {
+      "name": "Calculates and displays area for length 42, width 13",
+      "input": "42\n13\n",
+      "expectedOutput": "Length = 42.0 Width = 13.0 Area = 546.0",
+      "comparison": "included",
+      "points": 5,
+      "message": "With a length of 42 and a width of 13, your program should display a length of 42.0, a width of 13.0, and an area of 546.0.",
+      "possibleErrors": [
+        {
+          "type": "hardcoded_output_hint",
+          "badText": "15.0",
+          "message": "Your output still contains 15.0, which was the area from the previous test's numbers (5 x 3), even though different length and width values were provided this time. Make sure getArea is using the parameters passed into it rather than fixed numbers."
+        },
+        {
+          "type": "expected_missing",
+          "message": "Check that getLength and getWidth are returning the values entered by the user for this run, not values left over from before."
+        }
+      ]
+    },
+    {
+      "name": "Calculates and displays area for length 1850, width 3650",
+      "input": "1850\n3650\n",
+      "expectedOutput": "Length = 1850.0 Width = 3650.0 Area = 6752500.0",
+      "comparison": "included",
+      "points": 6,
+      "message": "With a length of 1850 and a width of 3650, your program should display a length of 1850.0, a width of 3650.0, and an area of 6752500.0.",
+      "possibleErrors": [
+        {
+          "type": "hardcoded_output_hint",
+          "badText": "546.0",
+          "message": "Your output still contains 546.0, which was the area from the previous test's numbers (42 x 13), even though different length and width values were provided this time. Make sure your program is using the values entered by the user rather than a fixed result."
+        },
+        {
+          "type": "timeout",
+          "message": "Your program may be waiting for more input than it needs. Make sure you only call nextDouble() once for length and once for width."
+        }
+      ]
+    }
+  ]
+}
