@@ -1,8 +1,6 @@
 {
   "schema": "iteryx/java-grader/v1",
-
   "assignmentName": "Ch. 5 Challenge 1",
-
   "project": {
     "workingDirectory": ".",
     "mainFile": "src/LandingZone.java",
@@ -21,21 +19,19 @@
       "LandingZone"
     ]
   },
-
   "settings": {
     "compileTimeoutSeconds": 30,
     "runTimeoutSeconds": 10,
     "defaultCaseSensitive": false,
     "defaultNormalizeWhitespace": true
   },
-
   "helpTopics": {
     "methods": {
-      "title": "Methods with Parameters and Return Values",
+      "title": "Writing and Calling a Void Method",
       "whereToLook": [
-        "Check that getLength, getWidth, and getArea are each written as their own method with the return type and parameters described in the README.",
-        "Make sure each method uses a return statement to send the value back, instead of printing it directly inside the method.",
-        "Call each method from main() and store the value it returns in a variable."
+        "Check that displayData is its own method that accepts the length and the width as double parameters and is declared void.",
+        "Calculate the area inside displayData and store it in a local variable before printing it.",
+        "Call displayData from main and pass it the length and width variables, in that order."
       ]
     },
     "scanner": {
@@ -43,14 +39,14 @@
       "whereToLook": [
         "Make sure you create a Scanner object using System.in before you try to read any input.",
         "Check that your prompt text matches the wording in the README before you call nextDouble().",
-        "Pass the same Scanner object into getLength and getWidth instead of creating a new one inside each method."
+        "Read the length first, then the width, with the same Scanner."
       ]
     },
     "output": {
       "title": "Displaying the Results",
       "whereToLook": [
-        "Make sure you are calling displayData with the length, width, and area variables rather than typing numbers into the message.",
-        "Check that getArea is being used to calculate the area instead of typing a calculated number directly."
+        "Make sure you call displayData with the length and width variables rather than typing numbers into the call.",
+        "Check that displayData multiplies its length and width parameters to get the area instead of using a typed-in number."
       ]
     },
     "closing": {
@@ -60,58 +56,32 @@
       ]
     }
   },
-
   "sourceChecks": [
     {
       "name": "Uses Scanner",
       "type": "regex",
-      "pattern": "\\bScanner\\b",
+      "pattern": "new\\s+Scanner\\s*\\(\\s*System\\.in\\s*\\)",
       "points": 1,
-      "message": "This challenge requires you to use a Scanner to read the user's input.",
+      "message": "This challenge requires you to create a Scanner with System.in to read the user's input.",
       "helpTopic": "scanner"
     },
     {
-      "name": "Defines a getLength method",
+      "name": "Defines displayData with two double parameters",
       "type": "regex",
-      "pattern": "\\bgetLength\\s*\\(",
-      "points": 1,
-      "message": "You need a method named getLength that asks the user for the length and returns it.",
-      "helpTopic": "methods"
-    },
-    {
-      "name": "Defines a getWidth method",
-      "type": "regex",
-      "pattern": "\\bgetWidth\\s*\\(",
-      "points": 1,
-      "message": "You need a method named getWidth that asks the user for the width and returns it.",
-      "helpTopic": "methods"
-    },
-    {
-      "name": "Defines a getArea method",
-      "type": "regex",
-      "pattern": "\\bgetArea\\s*\\(",
-      "points": 1,
-      "message": "You need a method named getArea that accepts length and width and returns the area.",
-      "helpTopic": "methods"
-    },
-    {
-      "name": "Defines a displayData method",
-      "type": "regex",
-      "pattern": "\\bdisplayData\\s*\\(",
-      "points": 1,
-      "message": "You need a method named displayData that displays the length, width, and area.",
+      "pattern": "\\bvoid\\s+displayData\\s*\\(\\s*double\\s+\\w+\\s*,\\s*double\\s+\\w+\\s*\\)",
+      "points": 3,
+      "message": "You need a void method named displayData that accepts the length and the width as double parameters.",
       "helpTopic": "methods"
     },
     {
       "name": "Closes the program with System.exit",
-      "type": "contains",
-      "pattern": "System.exit(",
-      "points": 1,
-      "message": "Your program should close itself using System.exit() after displaying the results.",
+      "type": "regex",
+      "pattern": "System\\.exit\\s*\\(\\s*0\\s*\\)\\s*;",
+      "points": 2,
+      "message": "Your program should close itself using System.exit(0); after displaying the results.",
       "helpTopic": "closing"
     }
   ],
-
   "tests": [
     {
       "name": "Displays both prompts",
@@ -141,7 +111,7 @@
       "possibleErrors": [
         {
           "type": "expected_missing",
-          "message": "Check that getArea multiplies the length and width parameters, and that displayData is called with the length, width, and area variables."
+          "message": "Check that displayData multiplies the length and width parameters, and that main calls displayData with the length and width variables."
         }
       ]
     },
@@ -156,11 +126,11 @@
         {
           "type": "hardcoded_output_hint",
           "badText": "15.0",
-          "message": "Your output still contains 15.0, which was the area from the previous test's numbers (5 x 3), even though different length and width values were provided this time. Make sure getArea is using the parameters passed into it rather than fixed numbers."
+          "message": "Your output still contains 15.0, which was the area from the previous test's numbers (5 x 3), even though different length and width values were provided this time. Make sure displayData calculates the area from the parameters passed into it rather than fixed numbers."
         },
         {
           "type": "expected_missing",
-          "message": "Check that getLength and getWidth are returning the values entered by the user for this run, not values left over from before."
+          "message": "Check that main reads a new length and width each run and passes them to displayData, not values left over from before."
         }
       ]
     },
