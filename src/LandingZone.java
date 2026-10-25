@@ -5,53 +5,34 @@ public class LandingZone {
     public static void main(String[] args) {
         // Make your variables and scanner.
 
-        // Get the landing zone's length from the user using a method.
-        // Pass the keyboard into this method.
+        // Ask for the landing zone's length and store it.
 
-        // Get the landing zone's width from the user using a method.
-        // Pass the keyboard into this method.
+        // Ask for the landing zone's width and store it.
 
         // Close the keyboard
-        
-        // Get the landing zone's area and store it in area using a method.
 
-        // Display the landing zone's data using a method.
+        // Display the landing zone's data by calling displayData.
+        // Pass it the length and the width.
 
         // Close the program using System.exit()
 
     }
 
     /**
-    The getLength method prompts the user for the landing zone's length.
-     @return The value entered by the user.
-     */
-
-
-    /**
-     The getWidth method prompts the user for the landing zone's width.
-     @return The value entered by the user.
-     */
-
-
-    /**
-     The getArea method calculates the landing zone's area.
+     The displayData method calculates the landing zone's area and
+     displays its length, width, and area.
      @param length The landing zone's length.
      @param width The landing zone's width.
-     @return The area of the landing zone.
      */
+    // Write the displayData method here. It accepts the length and
+    // the width as double arguments and does not return a value.
 
+        // Calculate the area and store it in a local variable named area.
 
-    /**
-     The displayData displays the landing zone's length, width, and area.
-     @param length The landing zone's length.
-     @param width The landing zone's width.
-     @param area The landing zone's area.
-     */
+        // Display the results with this statement:
+        // System.out.println("The Landing zone's dimensions are as follows:" +
+        //                    "\nLength  = " + length +
+        //                    "\nWidth = " + width +
+        //                    "\nArea  = " + area);
 
-    public static void displayData(double length, double width, double area) {
-        System.out.println("The Landing zone's dimensions are as follows:" +
-                           "\nLength  = " + length +
-                           "\nWidth = " + width +
-                           "\nArea  = " + area);
-    } 
 }
