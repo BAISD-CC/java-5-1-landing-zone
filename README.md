@@ -1,64 +1,134 @@
 # Ch. 5 Challenge 1: Landing Zone
 
-We need some help calculating some landing zones. Our rockets are going up and just coming down wherever. We're really worried that one is going to land on someone. We need you to write a program that asks the user to enter the length and width of the area where rockets have been landing, in feet, centered on the launch pad. The program should then calculate the area that needs to be kept clear so that no rockets land on anyone.
+## Mission Briefing
 
-## What You Will Build
+Our rockets are coming back down wherever they happen to land, and Mission Control is worried one will land on someone. Your program asks for the length and width of the area where rockets have been landing, in feet, centered on the launch pad. It then reports the area that must be kept clear. The calculating and displaying happen in a method that `main` calls.
 
-A program that:
+## What You'll Practice
 
-1. Asks the user for the landing zone's length in feet.
-2. Asks the user for the landing zone's width in feet.
-3. Calculates the area of the landing zone.
-4. Displays the length, width, and area to the user.
-5. Closes the program.
+- Writing a `void` method with two parameters (Day 1 notes, P2)
+- Calling a method and passing variables as arguments (Day 1 notes, P1)
+- A variable declared inside a method to hold a result
+- `Scanner` input with `nextDouble()`, and `System.exit(0)` to close the program
 
-## Required Methods
+## Starter Code
 
-The program should use the following methods, which have not been written yet:
+Edit `src/LandingZone.java`. The class is `LandingZone`. Do not rename the file or the class.
 
-- **getLength** - Asks the user to enter the length of the landing zone in feet and returns that value as a `double`.
-- **getWidth** - Asks the user to enter the width of the landing zone in feet and returns that value as a `double`.
-- **getArea** - Accepts the landing zone's length and width as arguments and returns the total area of the landing zone.
-- **displayData** - Accepts the landing zone's length, width, and area as arguments and displays them in a message on the screen. This method has already been written for you.
+The comments in `main` list the steps in order. Below `main`, the documentation comment for `displayData` is already written; write the method under it. The statement that prints the results is in a comment inside the starter: copy it into your method without the `//` marks.
 
-## Java Concepts You Will Use
+## Inputs
 
-- `Scanner` for reading user input.
-- Methods that accept parameters and return values.
-- `double` variables.
-- Multiplication to calculate area.
-- `System.exit()` to close the program.
+| Order | What it is | Java type |
+|---|---|---|
+| 1 | The landing zone's length in feet | `double` |
+| 2 | The landing zone's width in feet | `double` |
 
-## Required Input Prompts
+## Rules
 
-Your program must display these exact prompts before reading each value:
+### 1. The area
 
-```
-Enter the landing zone's length in feet:
-Enter the landing zone's width in feet:
-```
-
-## Area Calculation
+The area is the length times the width:
 
 ```
 area = length * width
 ```
 
-## Required Output
+### 2. Where the work happens
 
-After the length and width have been entered, calculate the area and display all three values using the `displayData` method, which has already been written for you. The values passed into `displayData` must come from the variables holding the user's input and the calculated area - not values typed directly into a message.
+`main` reads both values, then calls `displayData` once, passing the length and the width **in that order**. `displayData` calculates the area, stores it in a variable inside the method, and prints all three values. It does not send anything back to `main`.
 
-For example, if the user enters a length of `5` and a width of `3`, the output will look like this:
+### 3. Closing the program
+
+After the results print, close the program with `System.exit(0);`.
+
+## What to Use
+
+These are suggestions. Any approach that produces the correct output earns full credit, as long as it passes the three source checks (see How It's Checked).
+
+- The method header: `public static void displayData(double length, double width)`. Each parameter has its own type (P2 pattern).
+- The call in `main`: `displayData(length, width);`, with the two variables as arguments (P1 pattern).
+- Inside the method: `double area = length * width;`, then the `println` statement from the starter.
+
+## Exact Output
+
+Spelling, capitalization, and punctuation must match. Spacing around the `=` signs can differ slightly. Each prompt is printed on its own line; the user types on the next line.
+
+First prompt:
 
 ```
+Enter the landing zone's length in feet:
+```
+
+Second prompt:
+
+```
+Enter the landing zone's width in feet:
+```
+
+Results, after both values have been entered:
+
+```
+The Landing zone's dimensions are as follows:
+Length  = [length]
+Width = [width]
+Area  = [area]
+```
+
+All three values print as `double` values, so a length of `5` prints as `5.0`.
+
+## Sample Runs
+
+```text
+Enter the landing zone's length in feet:
+5
+Enter the landing zone's width in feet:
+3
 The Landing zone's dimensions are as follows:
 Length  = 5.0
 Width = 3.0
 Area  = 15.0
 ```
 
-Your length, width, and area values will change based on what the user enters - minor spacing differences are fine, but the wording and the order of the values shown above will not change.
+```text
+Enter the landing zone's length in feet:
+12.5
+Enter the landing zone's width in feet:
+8
+The Landing zone's dimensions are as follows:
+Length  = 12.5
+Width = 8.0
+Area  = 100.0
+```
 
-## Closing the Program
+## Test Your Program
 
-After the results are displayed, close the program using `System.exit(0);`.
+Run each test before you submit. The autograder uses these and other values.
+
+| Length | Width | Area line |
+|---|---|---|
+| `5` | `3` | `Area  = 15.0` |
+| `42` | `13` | `Area  = 546.0` |
+| `1850` | `3650` | `Area  = 6752500.0` |
+| `12.5` | `8` | `Area  = 100.0` |
+
+## How It's Checked
+
+| Check | What it looks for | Points |
+|---|---|---|
+| Prompts | Both prompts appear | 3 |
+| 5 by 3 | `Length = 5.0`, `Width = 3.0`, `Area = 15.0` | 5 |
+| 42 by 13 | `Length = 42.0`, `Width = 13.0`, `Area = 546.0` | 5 |
+| 1850 by 3650 | `Length = 1850.0`, `Width = 3650.0`, `Area = 6752500.0` | 6 |
+| Uses a `Scanner` | The source code creates a `Scanner` with `System.in` | 1 |
+| `displayData` method | The source code declares `void displayData` with two `double` parameters | 3 |
+| Closes the program | The source code calls `System.exit(0);` | 2 |
+| **Total** | | **25** |
+
+Any approach that produces the correct output earns full credit, as long as it passes the three source checks. Results must come from the user's input; the tests use sizes you have not seen.
+
+## Where to Look
+
+- Day 1 notes, M1 (Header, body, and call): how a method is written and called.
+- Day 1 notes, P1 (Three kinds of argument) and P2 (Two parameters): passing variables, and why the order matters.
+- Rule 2 above: which method does which job.
