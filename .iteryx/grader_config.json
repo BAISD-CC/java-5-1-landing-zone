@@ -26,130 +26,240 @@
     "defaultNormalizeWhitespace": true
   },
   "helpTopics": {
-    "methods": {
-      "title": "Writing and Calling a Void Method",
+    "todo1": {
+      "title": "TODO 1: showBanner",
       "whereToLook": [
-        "Check that displayData is its own method that accepts the length and the width as double parameters and is declared void.",
-        "Calculate the area inside displayData and store it in a local variable before printing it.",
-        "Call displayData from main and pass it the length and width variables, in that order."
+        "Day 1 notes, M1 (Header, body, and call): showBriefing is a void method with no parameters, the same shape as showBanner.",
+        "A call statement is the method's name, empty parentheses, and a semicolon. It never repeats void or the modifiers.",
+        "The call goes at TODO 1 (call), above the length prompt, so the banner prints first."
       ]
     },
-    "scanner": {
-      "title": "Reading Input with Scanner",
+    "todo2": {
+      "title": "TODO 2: showSweep",
       "whereToLook": [
-        "Make sure you create a Scanner object using System.in before you try to read any input.",
-        "Check that your prompt text matches the wording in the README before you call nextDouble().",
-        "Read the length first, then the width, with the same Scanner."
+        "Day 1 notes, M2: a call is a statement, so a loop can repeat it.",
+        "Day 1 notes, P1 (Three kinds of argument): pass the loop variable sweep as the argument, the same way displayBurn(seconds) passes a variable.",
+        "The parameter needs a data type in the header: int, then a name."
       ]
     },
-    "output": {
-      "title": "Displaying the Results",
+    "todo3": {
+      "title": "TODO 3: displayData",
       "whereToLook": [
-        "Make sure you call displayData with the length and width variables rather than typing numbers into the call.",
-        "Check that displayData multiplies its length and width parameters to get the area instead of using a typed-in number."
+        "Day 1 notes, P2 (Two parameters): every parameter needs its own data type, like (int high, int low).",
+        "Arguments match parameters by position, not by name. Pass length first, then width.",
+        "Calculate the area inside displayData and store it in a local variable named area before printing it."
       ]
     },
-    "closing": {
-      "title": "Closing the Program",
+    "todo4": {
+      "title": "TODO 4: showBeacons",
       "whereToLook": [
-        "Check that System.exit(0) is called after the landing zone's data has been displayed."
+        "Day 1 notes, P3 (Widening and a cast): a double argument can't go into an int parameter without a cast.",
+        "Keep the parameter an int. Put the cast in the call, the same way showThrust((int) precise) does.",
+        "A cast drops the decimal part: (int) 1.6 is 1. Don't round."
       ]
     }
   },
   "sourceChecks": [
     {
-      "name": "Uses Scanner",
+      "name": "TODO 1: showBanner header",
       "type": "regex",
-      "pattern": "new\\s+Scanner\\s*\\(\\s*System\\.in\\s*\\)",
-      "points": 1,
-      "message": "This challenge requires you to create a Scanner with System.in to read the user's input.",
-      "helpTopic": "scanner"
+      "pattern": "\\bvoid\\s+showBanner\\s*\\(\\s*\\)",
+      "points": 2,
+      "message": "Write a void method named showBanner with no parameters.",
+      "helpTopic": "todo1"
     },
     {
-      "name": "Defines displayData with two double parameters",
+      "name": "TODO 2: showSweep header",
+      "type": "regex",
+      "pattern": "\\bvoid\\s+showSweep\\s*\\(\\s*int\\s+\\w+\\s*\\)",
+      "points": 2,
+      "message": "Write a void method named showSweep with one int parameter.",
+      "helpTopic": "todo2"
+    },
+    {
+      "name": "TODO 3: displayData header",
       "type": "regex",
       "pattern": "\\bvoid\\s+displayData\\s*\\(\\s*double\\s+\\w+\\s*,\\s*double\\s+\\w+\\s*\\)",
-      "points": 3,
-      "message": "You need a void method named displayData that accepts the length and the width as double parameters.",
-      "helpTopic": "methods"
+      "points": 2,
+      "message": "Write a void method named displayData with two double parameters: the length, then the width.",
+      "helpTopic": "todo3"
     },
     {
-      "name": "Closes the program with System.exit",
+      "name": "TODO 4: showBeacons header",
       "type": "regex",
-      "pattern": "System\\.exit\\s*\\(\\s*0\\s*\\)\\s*;",
+      "pattern": "\\bvoid\\s+showBeacons\\s*\\(\\s*int\\s+\\w+\\s*\\)",
       "points": 2,
-      "message": "Your program should close itself using System.exit(0); after displaying the results.",
-      "helpTopic": "closing"
+      "message": "Write a void method named showBeacons with one int parameter. Keep it an int; the cast goes in the call.",
+      "helpTopic": "todo4"
     }
   ],
   "tests": [
     {
-      "name": "Displays both prompts",
+      "name": "TODO 1: Banner prints before the prompts",
       "input": "5\n3\n",
-      "expectedOutput": "Enter the landing zone's length in feet: Enter the landing zone's width in feet:",
+      "expectedOutput": "=== Landing Zone Clearance Report === Enter the landing zone's length in feet:",
+      "comparison": "included",
+      "points": 2,
+      "message": "The banner should be the first line of output, right before the length prompt.",
+      "helpTopic": "todo1",
+      "possibleErrors": [
+        {
+          "type": "hardcoded_output_hint",
+          "badText": "clearance report",
+          "message": "Your banner printed, but either it isn't right before the length prompt or its text doesn't match. Check that the call is at TODO 1 (call) and the text matches the README exactly."
+        },
+        {
+          "type": "expected_missing",
+          "message": "Check that showBanner prints === Landing Zone Clearance Report === and that main calls it at TODO 1 (call)."
+        },
+        {
+          "type": "runtime_error",
+          "message": "Your program crashed while running. Read the error output below for the line number."
+        }
+      ]
+    },
+    {
+      "name": "TODO 2: Three sweeps",
+      "input": "5\n3\n",
+      "expectedOutput": "Sweep 1 complete: zone clear. Sweep 2 complete: zone clear. Sweep 3 complete: zone clear.",
       "comparison": "included",
       "points": 3,
-      "message": "Your program should display the exact prompts from the README before reading the length and the width.",
+      "message": "The loop should print one sweep line for sweeps 1, 2, and 3.",
+      "helpTopic": "todo2",
       "possibleErrors": [
         {
-          "type": "no_output",
-          "message": "Your program produced no output. Make sure you print a prompt before reading input with the Scanner."
+          "type": "expected_missing",
+          "message": "Check that showSweep prints Sweep [number] complete: zone clear. (with the period), and that the call inside the loop passes the variable sweep, not a number you typed."
         },
         {
-          "type": "expected_missing",
-          "message": "Check that your length prompt reads exactly \"Enter the landing zone's length in feet:\" and your width prompt reads exactly \"Enter the landing zone's width in feet:\"."
+          "type": "runtime_error",
+          "message": "Your program crashed while running. Read the error output below for the line number."
         }
       ]
     },
     {
-      "name": "Calculates and displays area for length 5, width 3",
+      "name": "TODO 3: Data for 5 by 3",
       "input": "5\n3\n",
-      "expectedOutput": "Length = 5.0 Width = 3.0 Area = 15.0",
+      "expectedOutput": "Length = 5.0 feet Width = 3.0 feet Area = 15.0 square feet",
       "comparison": "included",
-      "points": 5,
-      "message": "With a length of 5 and a width of 3, your program should display a length of 5.0, a width of 3.0, and an area of 15.0.",
+      "points": 2,
+      "message": "A 5 by 3 zone should show a length of 5.0, a width of 3.0, and an area of 15.0.",
+      "helpTopic": "todo3",
       "possibleErrors": [
         {
+          "type": "hardcoded_output_hint",
+          "badText": "length = 3.0 feet",
+          "message": "Your length and width are swapped. Arguments match parameters by position: pass length first, then width."
+        },
+        {
           "type": "expected_missing",
-          "message": "Check that displayData multiplies the length and width parameters, and that main calls displayData with the length and width variables."
+          "message": "Check the three lines against the README: Length = [length] feet, Width = [width] feet, Area = [area] square feet."
+        },
+        {
+          "type": "runtime_error",
+          "message": "Your program crashed while running. Read the error output below for the line number."
         }
       ]
     },
     {
-      "name": "Calculates and displays area for length 42, width 13",
+      "name": "TODO 3: Data for 42 by 13",
       "input": "42\n13\n",
-      "expectedOutput": "Length = 42.0 Width = 13.0 Area = 546.0",
+      "expectedOutput": "Length = 42.0 feet Width = 13.0 feet Area = 546.0 square feet",
       "comparison": "included",
-      "points": 5,
-      "message": "With a length of 42 and a width of 13, your program should display a length of 42.0, a width of 13.0, and an area of 546.0.",
+      "points": 2,
+      "message": "A 42 by 13 zone should show a length of 42.0, a width of 13.0, and an area of 546.0.",
+      "helpTopic": "todo3",
       "possibleErrors": [
         {
           "type": "hardcoded_output_hint",
-          "badText": "15.0",
-          "message": "Your output still contains 15.0, which was the area from the previous test's numbers (5 x 3), even though different length and width values were provided this time. Make sure displayData calculates the area from the parameters passed into it rather than fixed numbers."
+          "badText": "15.0 square feet",
+          "message": "Your output still shows 15.0, the area for 5 by 3. Calculate the area from displayData's parameters, not from typed-in numbers."
+        },
+        {
+          "type": "hardcoded_output_hint",
+          "badText": "length = 13.0 feet",
+          "message": "Your length and width are swapped. Arguments match parameters by position: pass length first, then width."
         },
         {
           "type": "expected_missing",
-          "message": "Check that main reads a new length and width each run and passes them to displayData, not values left over from before."
+          "message": "Check that displayData multiplies its two parameters to get the area."
         }
       ]
     },
     {
-      "name": "Calculates and displays area for length 1850, width 3650",
-      "input": "1850\n3650\n",
-      "expectedOutput": "Length = 1850.0 Width = 3650.0 Area = 6752500.0",
+      "name": "TODO 3: Data for a hidden size",
+      "input": "27.5\n14\n",
+      "expectedOutput": "Length = 27.5 feet Width = 14.0 feet Area = 385.0 square feet",
       "comparison": "included",
-      "points": 6,
-      "message": "With a length of 1850 and a width of 3650, your program should display a length of 1850.0, a width of 3650.0, and an area of 6752500.0.",
+      "points": 2,
+      "hidden": true,
+      "message": "displayData should work for any length and width.",
+      "helpTopic": "todo3",
+      "possibleErrors": [
+        {
+          "type": "expected_missing",
+          "message": "Your displayData passes the visible tests but not this one. Check that nothing in it is a typed-in number."
+        }
+      ]
+    },
+    {
+      "name": "TODO 4: Beacons for 5 by 3",
+      "input": "5\n3\n",
+      "expectedOutput": "Beacons needed: 1 Landing zone report complete.",
+      "comparison": "included",
+      "points": 2,
+      "message": "A 5 by 3 zone has 16 feet of edge, so it needs 1 beacon.",
+      "helpTopic": "todo4",
       "possibleErrors": [
         {
           "type": "hardcoded_output_hint",
-          "badText": "546.0",
-          "message": "Your output still contains 546.0, which was the area from the previous test's numbers (42 x 13), even though different length and width values were provided this time. Make sure your program is using the values entered by the user rather than a fixed result."
+          "badText": "beacons needed: 1.6",
+          "message": "The beacon count should be a whole number. showBeacons needs an int parameter, and the call needs a cast because beacons is a double."
         },
         {
-          "type": "timeout",
-          "message": "Your program may be waiting for more input than it needs. Make sure you only call nextDouble() once for length and once for width."
+          "type": "expected_missing",
+          "message": "Check that showBeacons prints Beacons needed: [number] and that main calls it at TODO 4 (call), after displayData."
+        }
+      ]
+    },
+    {
+      "name": "TODO 4: Beacons for 12.5 by 8",
+      "input": "12.5\n8\n",
+      "expectedOutput": "Beacons needed: 4 Landing zone report complete.",
+      "comparison": "included",
+      "points": 2,
+      "message": "A 12.5 by 8 zone has 41 feet of edge, so it needs 4 beacons. The cast drops the .1.",
+      "helpTopic": "todo4",
+      "possibleErrors": [
+        {
+          "type": "hardcoded_output_hint",
+          "badText": "beacons needed: 4.1",
+          "message": "The beacon count should be a whole number. showBeacons needs an int parameter, and the call needs a cast because beacons is a double."
+        },
+        {
+          "type": "hardcoded_output_hint",
+          "badText": "beacons needed: 1",
+          "message": "Your output shows 1 beacon, the count for 5 by 3. Pass the beacons variable, not a typed-in number."
+        },
+        {
+          "type": "expected_missing",
+          "message": "A cast drops the decimal part: (int) 4.1 is 4. Check that the call casts beacons rather than rounding it."
+        }
+      ]
+    },
+    {
+      "name": "TODO 4: Beacons for a hidden size",
+      "input": "33\n21\n",
+      "expectedOutput": "Beacons needed: 10 Landing zone report complete.",
+      "comparison": "included",
+      "points": 2,
+      "hidden": true,
+      "message": "showBeacons should work for any zone size.",
+      "helpTopic": "todo4",
+      "possibleErrors": [
+        {
+          "type": "expected_missing",
+          "message": "Your beacon count passes the visible tests but not this one. Check that the call casts beacons with (int) rather than rounding it."
         }
       ]
     }
